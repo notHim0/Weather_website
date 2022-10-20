@@ -6,6 +6,7 @@ const geoWeather = require('./utils/geoWeather');
 
 //loading in the express function
 const app = express();
+const port = process.env.PORT || 3000;
 
 //Define path for express configs
 const publicDirectoryPath = path.join(__dirname, '../public');
@@ -76,4 +77,4 @@ app.get('*', (req, res) => {
 		name        : 'Shayan Tanweer'
 	});
 });
-app.listen(3000, () => console.log('Server is up and running.....'));
+app.listen(port, () => console.log('Server is up and running.....'));
