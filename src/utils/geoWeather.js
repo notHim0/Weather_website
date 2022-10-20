@@ -8,18 +8,24 @@ function weather(latitude, longitude, callback) {
 		longitude;
 
 	request({ url, json: true }, (error, { body }) => {
-		if (error) callback('Unable to connect to Weather api', undefined);
+		if (error) callback('Unable to connect	 to Weather api', undefined);
 		else if (body.error) callback('Invalid input', undefined);
 		else {
 			const data = body.current;
 			callback(
 				error,
 				data.weather_descriptions[0] +
-					". It's currently " +
+					'. It is currently ' +
 					data.temperature +
-					'c outside and its feels like ' +
+					'°C outside and ' +
 					data.feelslike +
-					'c inside.'
+					'°C inside.' +
+					body.location.name +
+					' currently has a approximated wind speed of ' +
+					data.wind_speed +
+					'km/h, humidity is at ' +
+					data.humidity +
+					'%.'
 			);
 		}
 	});
